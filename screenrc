@@ -1,0 +1,78 @@
+#set coding
+#defencoding GBK
+#encoding UTF-8 GBK
+#see the startup message
+startup_message off
+term linux
+
+##设置状态栏
+#hardstatus alwayslastline
+#shelltitle "$|bash"
+shell -$SHELL
+
+escape ^Jj
+
+
+# 下标签设置
+hardstatus on
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %Y/%m/%d %{G}%c %{g}][%= %{= kw}%?%-Lw%?%{Y}%n*%f%t %{K}%?%+Lw%?%= %{kG}][ %{C}(F8)Screen (F9)Title (F10)Detach (F11)Prev (F12)Next %{kg}]'
+#hardstatus string '%{= kG}[ %{G}%c:%s %{g}][%= %{= kw}%?%-Lw%?%{Y}%n*%f%t %{K}%?%+Lw%?%= %{kG}][ %{C}(F8)Screen (F9)Title (F10)Detach (F11)Prev (F12)Next %{kg}][%{kG} %l %Y/%m/%d %{kG}]'
+#hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %{..Y} %m/%d %C%a"
+#hardstatus string '%{= kg}[ %{G}%c:%s %{g}][%= %{= kw}%?%-Lw%?%{Y}%n*%f%t %{K}%?%+Lw%?%= %{g}][%{kG} %D %Y/%m/%d %{g}]'
+caption always "%{= kw}%-w%{= kG}%{+b}[%n %t]%{-b}%{= kw}%+w %=%d %M %0c %{g}%H%{-}"
+
+## 解决无法滚动
+termcapinfo xterm|xterms|xs ti@:te=\E[2J
+
+# a short version, can use C-a
+
+#
+###shutdown the noise
+vbell off
+
+# 屏幕缓冲区行数
+defscrollback 5000
+
+#
+### w to show the window list
+bind w windowlist -b
+bind ^w windowlist -b
+###initial apps to run
+#screen -t bash 0
+#screen -t build   1
+#screen -t package 2
+#screen -t tmp     3
+#screen -t test    4
+#select 0
+
+
+
+#进行快捷键的绑定
+# bind Alt+z to move to previous window
+bindkey ^[z prev
+# # bind Alt+x to move to next window
+bindkey ^[x next
+
+bindkey "^[`" select 0
+bindkey "^[1" select 1
+bindkey "^[2" select 2
+bindkey "^[3" select 3
+bindkey "^[4" select 4
+bindkey "^[5" select 5
+bindkey "^[6" select 6
+bindkey "^[7" select 7
+bindkey "^[8" select 8
+bindkey "^[9" select 9
+bindkey "^[0" select 10
+bindkey "^[-" select 11
+bindkey "^[=" select 12
+
+bindkey -k k8 screen
+bindkey -k k9 title
+bindkey -k k; detach
+bindkey -k F1 prev
+bindkey -k F2 next
+bindkey -k k4 quit
+attrcolor u "-u B"
+autodetach on
